@@ -9,11 +9,11 @@ public class GameController : MonoBehaviour {
     public Screen gameScreen;
 
     void OnEnable(){
-        
+        GameScreenController.OnScreenComplete += ScreenComplete;
     }
 
     void OnDisable(){
-
+        GameScreenController.OnScreenComplete -= ScreenComplete;
     }
 
     void Start(){
@@ -26,6 +26,31 @@ public class GameController : MonoBehaviour {
             OnScreenChange( this.gameScreen );
         }
     }
+
+    private void ScreenComplete( Screen completedScreen ){
+         if( completedScreen == Screen.Title ){
+            gameScreen = Screen.Game;
+        }
+
+        if( completedScreen == Screen.Game ){
+            gameScreen = Screen.Credits;
+        }
+
+        if( completedScreen == Screen.Credits ){
+            gameScreen = Screen.Game;
+        }
+
+        ChangeScreen( gameScreen );
+    }
+
+    public static void EndGame() {
+        if( OnScreenChange != null ){
+            OnScreenChange( Screen.Credits );
+        } 
+    }
+
+
+
     
 }
 

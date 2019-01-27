@@ -34,7 +34,6 @@ public class ConvoController : MonoBehaviour {
 
         foreach( var trigger in triggers ){
             ConversationTrigger ct = trigger.GetComponent<ConversationTrigger>();
-            Debug.Log( ct );
             ct.OnConversationDisplay += DisplayConversation;
             ct.OnConversationHide += HideConversation;
             conversationTriggers.Add( ct );

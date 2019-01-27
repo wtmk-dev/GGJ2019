@@ -29,10 +29,6 @@ public class GameScreenController : MonoBehaviour {
     }
 
     public void WakeUp(){
-        if( OnScreenComplete != null ){
-            OnScreenComplete( Screen.Game );
-        }
-
         gameScreen.SetActive( false );
     }
 
