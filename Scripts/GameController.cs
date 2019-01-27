@@ -49,9 +49,6 @@ public class GameController : MonoBehaviour {
         } 
     }
 
-
-
-    
 }
 
 public enum Screen { Title, Game, Credits };

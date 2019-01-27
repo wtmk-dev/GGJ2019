@@ -9,7 +9,7 @@ public class PlayerUI : MonoBehaviour {
     private GameObject goInventoryText, goClockText;
     private TextMeshProUGUI inventoryText, clockText;
     private bool timerStarted;
-    private float timeLeft = 1.5f;
+    private float timeLeft = 2f;
     private int hour = 7;
     private int min = 0;
 
@@ -40,7 +40,7 @@ public class PlayerUI : MonoBehaviour {
                     min = 0;
                     clockText.text = hour + ":00 AM";
                 }
-                timeLeft = 1.5f;
+                timeLeft = 2f;
             }
         }
     }

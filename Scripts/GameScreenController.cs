@@ -100,7 +100,7 @@ public class GameScreenController : MonoBehaviour {
         if( currentScreen == Screen.Game ){
             gameScreen.SetActive( true );
             fadeScreen.SetActive( true );
-            screenFade = FadeImageRoutine( false );
+            screenFade = FadeImageRoutine( true );
             StartCoroutine( screenFade );
         }
 

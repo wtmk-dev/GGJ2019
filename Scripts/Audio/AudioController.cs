@@ -29,7 +29,7 @@ public class AudioController : MonoBehaviour {
             audioSource.loop = false;
             audioSource.Play();
         
-            playNextSong = PlayNextSongRutine( audioSource.clip.length + .5f );
+            playNextSong = PlayNextSongRutine( audioSource.clip.length );
 		    StartCoroutine( playNextSong );
 
         }
