@@ -34,7 +34,7 @@ public class ConversationTrigger : MonoBehaviour {
     }
 
     public void Activate( int id ){
-        if( this.id == 7 && id == 7 ){
+        if( this.id == 7 && id == 7 || this.id == 10 && id == 10 ){
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
             gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;

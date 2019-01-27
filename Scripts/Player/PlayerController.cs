@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour {
     private int currentId;
     private bool isInteracting;
     [SerializeField]
-    private GameObject goPlayerUI;
+    private GameObject goPlayerUI, goGameScreenController;
     private PlayerUI playerUI;
     private float timeWith;
     private List<ConversationTrigger> conversationTriggers;
+
+    private GameScreenController gsController;
 
     void OnTriggerEnter2D(Collider2D other){
         ConversationTrigger co = other.GetComponent<ConversationTrigger>();
@@ -54,11 +56,17 @@ public class PlayerController : MonoBehaviour {
             switch(currentId){
                 case 0:
                 observer.UpdateInventory( currentId, false );
+                observer.Accomplishment( currentId );
+                break;
+                case 1:
+                observer.UpdateInventory( currentId, false );
+                observer.Accomplishment( currentId );
                 break;
                 case 2:
                 observer.UpdateInventory( currentId, false );
                 observer.UpdateInventory( currentId + 1, false );
                 observer.UpdateInventory( 7, true );
+                observer.Accomplishment( currentId );
                 break;
                 case 3:
                 observer.UpdateInventory( currentId, false );
@@ -67,18 +75,30 @@ public class PlayerController : MonoBehaviour {
                 break;
                 case 4:
                 observer.UpdateInventory( currentId, false);
-                //observer.UpdateInventory()
+                observer.Accomplishment( currentId );
                 break;
                 case 5:
                 observer.UpdateInventory( 4, true );
+                observer.Accomplishment( currentId );
                 break;
                 case 7:
+                if( observer.InventoryMap[currentId] ){
+                    observer.Accomplishment( 10 );
+                }
+                observer.Accomplishment( currentId );
                 observer.UpdateInventory( currentId, false );
-                observer.UpdateInventory( 9, true );                
+                observer.UpdateInventory( 9, true );
+                break;
+                case 8:
+                observer.Accomplishment( currentId );
                 break;
                 case 9:
                 observer.UpdateInventory( currentId, false );
                 observer.UpdateInventory( 1, true );
+                break;
+                case 10:
+                observer.UpdateInventory( 7, false );
+                observer.Accomplishment( 10 );
                 break;
             }
 
@@ -87,6 +107,7 @@ public class PlayerController : MonoBehaviour {
             }
             
             playerUI.UpdateInventory( observer.InventoryMap );
+            gsController.UpdateAccomplishments( observer.AccomplishmentMap );
         }
     }
 
@@ -96,6 +117,7 @@ public class PlayerController : MonoBehaviour {
         playerUI.UpdateInventory( observer.InventoryMap );
 
         conversationTriggers = new List<ConversationTrigger>();
+        gsController = goGameScreenController.GetComponent<GameScreenController>();
     }
 
     public void SetConversationTriggers( List<ConversationTrigger> conversationTriggers ) {
@@ -115,14 +137,13 @@ public class PlayerController : MonoBehaviour {
              isInteracting = true;
         }
 
-        if( id == 5 || id == 8 || id == 7 ){
+        if( id == 5 || id == 8 || id == 7 || id == 10 ){
             currentId = id;
             isInteracting = true;
         }
     }
 
     private void OnEventLeft( int id ){
-        Debug.Log( "playerControlelr event left " + id );
         currentId = -1;
         isInteracting = false;
     }

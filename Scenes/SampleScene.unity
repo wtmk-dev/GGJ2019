@@ -908,6 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goInventoryText: {fileID: 1447283240}
+  goClockText: {fileID: 578615053}
 --- !u!222 &136389234
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2676,6 +2677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goPlayerUI: {fileID: 136389231}
+  goGameScreenController: {fileID: 788071663}
 --- !u!1 &494905356 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9062028254757137226, guid: 7749be88399b58044afa933272b30847,

@@ -111,6 +111,9 @@ public class ConvoController : MonoBehaviour {
             }else{
                  textBox.SetText( "You are FIRED!" );
             }
+            if( playerController.observer.CheckInventory(7) ){
+                questionBox.SetText( "Would you like to stab? Press Y for yes." );
+            }
             break;
             case 11:
             textBox.SetText( "Extra adorable person: <3 u 5 ever...\nDon't worry so much we will alwasy have eachother." );
