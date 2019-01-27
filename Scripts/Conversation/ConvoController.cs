@@ -113,7 +113,7 @@ public class ConvoController : MonoBehaviour {
             }
             break;
             case 11:
-            textBox.SetText( "Extra adorable person: Don't worry so much we will alwasy have eachother.\n<3 u 5 ever..." );
+            textBox.SetText( "Extra adorable person: <3 u 5 ever...\nDon't worry so much we will alwasy have eachother." );
             break;
             case 12:
             textBox.SetText( "Saved person: That could have been the end for me." );
