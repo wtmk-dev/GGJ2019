@@ -6,11 +6,49 @@ using TMPro;
 public class PlayerUI : MonoBehaviour {
 
     [SerializeField]
-    private GameObject goInventoryText;
-    private TextMeshProUGUI inventoryText;
+    private GameObject goInventoryText, goClockText;
+    private TextMeshProUGUI inventoryText, clockText;
+    private bool timerStarted;
+    private float timeLeft = 1.5f;
+    private int hour = 7;
+    private int min = 0;
+
+    void OnEnable(){
+        GameController.OnScreenChange += ScreenChange;
+    }
+
+    void OnDisable(){
+        GameController.OnScreenChange -= ScreenChange;
+    }
 
     void Awake(){
         inventoryText = goInventoryText.GetComponent<TextMeshProUGUI>();
+        clockText = goClockText.GetComponent<TextMeshProUGUI>();
+    }
+
+    void Update(){
+        if( timerStarted ){
+            timeLeft -= Time.deltaTime;
+            if ( timeLeft < 0 ) {
+                min++;
+                if( min < 10 ){
+                    clockText.text = hour + ":" + "0" + min + " AM";
+                }else if( min < 60 ){
+                    clockText.text = hour + ":" + min + " AM";
+                }else if( min >= 60 ){
+                    hour++;
+                    min = 0;
+                    clockText.text = hour + ":00 AM";
+                }
+                timeLeft = 1.5f;
+            }
+        }
+    }
+
+    private void ScreenChange( Screen screen ){
+        if( screen == Screen.Game ){
+            timerStarted = true;
+        }
     }
 
     public void UpdateInventory( Dictionary<int,bool> inventory ){

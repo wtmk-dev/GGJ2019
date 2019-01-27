@@ -28,6 +28,8 @@ public class PlayerObserver {
         }
     }
 
+    //private void Acomplishments
+
     private void InitInventoryMap(){
         inventoryMap = new Dictionary<int,bool>();
         // 0 coffee
